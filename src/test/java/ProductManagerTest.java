@@ -60,7 +60,7 @@ public class ProductManagerTest {
         repo.removeById(2);
 
         Product[] expected = {book1, book2};
-        Product[] actual = {book1, book2};
+        Product[] actual = repo.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
 
@@ -102,7 +102,6 @@ public class ProductManagerTest {
         Assertions.assertEquals(actual, expected);
 
 
-
     }
 
     @Test
@@ -119,7 +118,6 @@ public class ProductManagerTest {
         String expected = book1.getAuthor();
 
         Assertions.assertEquals(actual, expected);
-
 
 
     }
@@ -140,7 +138,24 @@ public class ProductManagerTest {
         Assertions.assertEquals(actual, expected);
 
 
+    }
 
+    @Test
+
+    public void removeProduct2() {
+        ProductRepository repo = new ProductRepository();
+        ProductManager manager = new ProductManager(repo);
+        Book book1 = new Book(1, "Турецкий гамбит", 250, "Борис Акунин");
+        Book book2 = new Book(3, "Азазель", 250, "Борис Акунин");
+        Smartphone phone1 = new Smartphone(2, "Samsung", 15000, "Samsung Inc.");
+
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(phone1);
+
+        Assertions.assertThrows(NonFoundException.class, () -> {
+            repo.removeById(6);
+        });
     }
 }
 

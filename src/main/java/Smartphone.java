@@ -1,4 +1,4 @@
-public class Smartphone extends Product{
+public class Smartphone extends Product {
     private String manufacturer;
 
     public Smartphone(int id, String name, int price, String manufacturer) {
@@ -6,7 +6,7 @@ public class Smartphone extends Product{
         this.manufacturer = manufacturer;
     }
 
-    public String getManufacturer(){
+    public String getManufacturer() {
         return manufacturer;
     }
 
